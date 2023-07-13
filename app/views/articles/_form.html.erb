@@ -1,0 +1,30 @@
+<%= form_with model: article do |form| %>
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label", for: "InputTitle" %><br>
+    <%= form.text_field :title, class: "form-control", id: "InputTitle" %>
+    <% article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :body, class: "form-label", for: "InputBody" %><br>
+    <%= form.text_area :body, class: "form-control", id: "InputBody" %><br>
+    <% article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+  </div>
+  <div>
+    <%= form.label :publesed_at %><br>
+    <%= form.date_select :publesed_at, include_blank:true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
