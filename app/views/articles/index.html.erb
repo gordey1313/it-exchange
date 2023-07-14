@@ -8,7 +8,7 @@ Our blog has <%= Article.public_count %> articles and counting!
         <div class="col p-2 d-flex flex-column position-static">
           <% if article.draft? %>
             <strong class="btn btn-secondary">Draft</strong>
-          <%elsif article.schedule?%>
+          <%elsif article.scheduled?%>
             <strong class="btn btn-info">Scheduled</strong>
           <%end%>
           <h3 class="mb-0"><%= link_to article.title, article %></h3>
