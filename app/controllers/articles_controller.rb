@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, except: [:index, :new, :create]
   
   def index
-    @articles = user_signed_in? ? Article.all : Article.published
+    @articles = user_signed_in? ? Article.sorted : Article.published.sorted
   end
 
   def show

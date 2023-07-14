@@ -6,20 +6,21 @@ class Article < ApplicationRecord
     validates :title, presence: true
     validates :body, presence: true, length: { minimum: 10 }
     
-    scope :draft, -> { where(published_at:nil)}
+    scope :sorted, -> { order(published_at: :desc, updated_at: :desc)}
+    scope :draft, -> { where(published_at: nil)}
     scope :published, -> { where("published_at <= ?", Date.current)}
     scope :scheduled, -> { where("published_at > ?", Date.current)}
 
     def draft?
-        publihed_at.nil?
+        published_at.nil?
     end
 
-    def publihed?
-        publihed_at? && publihed_at <= Date.current
+    def published?
+        published_at? && published_at <= Date.current
     end
 
     def schedule?
-        publihed_at? && publihed_at > Date.current
+        published_at? && published_at > Date.current
     end
 
 end
